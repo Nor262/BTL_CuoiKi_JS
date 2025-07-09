@@ -732,22 +732,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // Modal close buttons
   closeModalBtn.addEventListener("click", () => {
     animeModal.classList.add("hidden")
+    const iframe = modalContent.querySelector("iframe");
+    if (iframe) {
+      iframe.src = "";
+    }
   })
 
   closeRandomModalBtn.addEventListener("click", () => {
     randomModal.classList.add("hidden")
+    const iframe = randomModalContent.querySelector("iframe");
+    if (iframe) {
+      iframe.src = "";
+    }
   })
 
   // Close modals when clicking outside
   animeModal.addEventListener("click", (e) => {
     if (e.target === animeModal) {
       animeModal.classList.add("hidden")
+      const iframe = modalContent.querySelector("iframe");
+      if (iframe) {
+        iframe.src = "";
+      }
     }
   })
 
   randomModal.addEventListener("click", (e) => {
     if (e.target === randomModal) {
       randomModal.classList.add("hidden")
+      const iframe = randomModalContent.querySelector("iframe");
+      if (iframe) {
+        iframe.src = "";
+      }
     }
   })
 
@@ -756,6 +772,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") {
       animeModal.classList.add("hidden")
       randomModal.classList.add("hidden")
+      const iframe = modalContent.querySelector("iframe");
+      if (iframe) {
+        iframe.src = "";
+      }
     }
   })
 })

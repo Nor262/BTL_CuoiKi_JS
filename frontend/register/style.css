@@ -1,0 +1,144 @@
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login {
+  position: relative;
+  width: 260px; /* Reducimos el ancho del formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Reducimos el espacio entre los elementos */
+}
+
+.login h2 {
+  font-size: 2.5em; /* Reducimos un poco el tamaño del título */
+  color: #ff0000;
+  text-shadow: 0px 0px 20px #ff0000;
+  text-align: center;
+}
+
+.login .inputBx {
+  position: relative;
+  width: 100%;
+}
+
+.login .inputBx input {
+  position: relative;
+  width: 100%;
+  padding: 10px 0px; /* Reducimos el padding */
+  background: transparent;
+  border: 2px solid #ff0000;
+  border-radius: 30px; /* Ajustamos el borde para que sea proporcional al tamaño */
+  font-size: 1em; /* Reducimos el tamaño de fuente */
+  color: #ff0000;
+  box-shadow: none;
+  outline: none;
+  text-align: center; /* Para centrar el texto dentro del input */
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.login .inputBx input:focus {
+  box-shadow: 0px 0px 10px 0px #ff0000;
+  transition: all 0.3s ease;
+}
+
+.login .inputBx input[type="submit"] {
+  width: 100%; /* Aseguramos que sea del mismo ancho que los inputs */
+  padding: 10px 15px; /* Igual que los demás inputs */
+  background: #ff0000;
+  border: none;
+  border-radius: 30px; /* Igual que los demás inputs */
+  font-size: 1em; /* Igual que los demás inputs */
+  cursor: pointer;
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+.login .inputBx input[type="submit"]:hover {
+  background: #ff0000;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.login .inputBx input::placeholder {
+  color: #ff0000;
+}
+
+.login .links {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px; /* Reducimos un poco el padding */
+}
+
+.login .links a {
+  color: #ff0000;
+  text-decoration: none;
+  font-size: 0.9em; /* Reducimos el tamaño de fuente */
+}
+
+.ring {
+  position: relative;
+  width: 400px; /* Reducimos el tamaño del anillo */
+  height: 400px; /* Reducimos el tamaño del anillo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ring i {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #3a0000;
+  filter: drop-shadow(0 0 20px #ff0000);
+  transition: 0.5s;
+}
+
+.ring i:nth-child(1) {
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  animation: animate 6s linear infinite;
+}
+
+.ring i:nth-child(2) {
+  border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+  animation: animate 4s linear infinite;
+}
+
+.ring i:nth-child(3) {
+  border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+  animation: animate2 10s linear infinite;
+}
+
+.ring:hover i {
+  border: 6px solid black;
+  filter: drop-shadow(0 0 20px #ff0000);
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/logo.png" sizes="512x512" />
+    <title>MyAnimeList</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-left">
+                <a href="#" class="logo">MyAnimeList</a>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#top-anime" class="nav-link">Top Anime</a>
+                    <a href="#seasonal" class="nav-link">Seasonal</a>
+                    <a href="#genres" class="nav-link">Genres</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search anime..." class="search-input">
+                    <button id="search-button" class="search-button">
+                        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                    </button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <ion-icon name="moon-outline" class="theme-icon"></ion-icon>
+                </button>
+                <a class="watchlist-icon-container" id="watchlist-icon" href="#watchlist-section">
+                    <ion-icon name="bookmark-outline" class="watchlist-icon"></ion-icon>
+                    <span id="watchlist-count" class="watchlist-badge">0</span>
+                </a>
+                <button class="user-container" id="user-container">
+                    <ion-icon name="person-outline" class="user-icon"></ion-icon>
+                    <div class="user-name" id="user-name"></div>
+                </button>
+                <div class="logout-button-container" id="logout-button-container">
+                    <button id="logout-button" class="logout-button">
+                        <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to MyAnimeList</h1>
+                <p class="hero-subtitle">Your ultimate destination for anime information powered by Jikan API. Discover
+                    thousands of anime series and movies.</p>
+                <div class="hero-buttons">
+                    <button id="trending-button" class="hero-button primary-button">
+                        <ion-icon name="trending-up-outline" class="button-icon"></ion-icon>
+                        Trending Now
+                    </button>
+                    <button id="random-button" class="hero-button secondary-button">
+                        <ion-icon name="shuffle-outline" class="button-icon"></ion-icon>
+                        Random Anime
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results" class="section hidden">
+        <div class="container">
+            <h2 class="section-title">Search Results</h2>
+            <div id="search-results-container" class="anime-grid"></div>
+            <div id="search-loading" class="loading-container hidden">
+                <div class="loader"></div>
+            </div>
+            <div id="search-no-results" class="no-results hidden">
+                <p>No results found. Try a different search term.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Watchlist Section -->
+    <section id="watchlist-section" class="section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Watchlist</h2>
+                <button id="clear-watchlist" class="danger-button">
+                    <ion-icon name="trash-outline" class="button-icon"></ion-icon>
+                    Clear Watchlist
+                </button>
+            </div>
+            <div id="watchlist-container" class="anime-grid"></div>
+            <div id="watchlist-empty" class="no-results">
+                <p>Your watchlist is empty.</p>
+                <p class="subtext">Add anime to your watchlist by clicking the bookmark icon on any anime card.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Anime Section -->
+    <section class="section" id="top-anime">
+        <div class="container">
+            <h2 class="section-title">Top Anime</h2>
+            <div id="top-anime-container" class="anime-grid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Anime Section -->
+    <section class="section dark-section" id="seasonal">
+        <div class="container">
+            <h2 class="section-title">Current Season Anime</h2>
+            <div id="seasonal-container" class="anime-grid seasonal-grid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section class="section" id="genres">
+        <div class="container">
+            <h2 class="section-title">Browse by Genre</h2>
+            <div id="genres-container" class="genres-grid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Genre Results Section -->
+    <section id="genre-results" class="section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="genre-title" class="section-title">Genre: </h2>
+                <button id="back-to-genres" class="primary-button">
+                    <ion-icon name="arrow-back-outline" class="button-icon"></ion-icon>
+                    Back to Genres
+                </button>
+            </div>
+            <div id="genre-results-container" class="anime-grid"></div>
+            <div id="genre-loading" class="loading-container">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anime Details Modal -->
+    <div id="anime-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-button">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div id="modal-content" class="modal-body">
+                <div class="loading-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Random Anime Modal -->
+    <div id="random-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-random-modal" class="close-button">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div id="random-modal-content" class="modal-body">
+                <!-- Content will be populated by JavaScript -->
+                <div class="loading-container">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="another-random" class="primary-button">
+                    <ion-icon name="shuffle-outline" class="button-icon"></ion-icon>
+                    Try Another Random Anime
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Watchlist Notification -->
+    <div id="watchlist-notification" class="notification">
+        <p id="notification-text"></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h2 class="footer-logo">MyAnimeList</h2>
+                    <p>Your ultimate destination for anime information. Powered by the Jikan API (jikan.moe), an
+                        unofficial MyAnimeList API.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Browse</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#top-anime">Top Anime</a></li>
+                            <li><a href="#seasonal">Seasonal</a></li>
+                            <li><a href="#genres">Genres</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="https://jikan.moe/" target="_blank">Jikan API</a></li>
+                            <li><a href="https://myanimelist.net/" target="_blank">MyAnimeList</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>About</h3>
+                        <p>This is a demo site created with the Jikan API. It's not affiliated with MyAnimeList.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 MyAnimeList. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

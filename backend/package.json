@@ -4,6 +4,7 @@
   "type": "module",
   "main": "db.js",
   "scripts": {
+    "start": "node express.js",
     "dev": "npx nodemon express.js"
   },
   "keywords": [],
